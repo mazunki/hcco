@@ -1876,7 +1876,8 @@ export async function setup(ctx) {
                 case 'ShopPurchase':
                     return game.shop.purchases.filter(x => x.isCO).includes(requirement.purchase)
                 case 'SlayerTask':
-                    return SlayerTask.data.filter(x => x.isCO).map(x => x.id).includes(requirement.tier) // This is just for stuff like Mythical Slayer Gear
+                    return game.combat.slayerTask.categories.filter(x => x.isCO).map(x => x.id).includes(requirement.tier) // This is just for stuff like Mythical Slayer Gear
+				*/
                 case 'MonsterKilled':
                     return game.monsters.filter(x => x.isCO).includes(requirement.monster)
                     // CO do not have Township so auto-fail these
@@ -1898,7 +1899,7 @@ export async function setup(ctx) {
             game.monsters.forEach(x => x.isCO = false)
             game.items.forEach(x => x.isCO = false)
             game.bank.itemUpgrades.forEach((baseItem, upgradeItem) => upgradeItem.isCO = false)
-            SlayerTask.data.forEach((taskTier, tierID) => {
+            game.combat.slayerTask.categories.forEach((taskTier, tierID) => {
                 taskTier.id = tierID;
                 taskTier.isCO = false
             }) // Make each slayer tier aware of its own tier ID
@@ -1977,7 +1978,7 @@ export async function setup(ctx) {
             })
 
             const coMonsterList = new Set([...coAreas.map(area => area.monsters).flat(), ...includedMonsters].filter(x => !bannedMonsters.includes(x)))
-            const coSlayerTaskList = new Set([...coMonsterList].filter(x => x.canSlayer).map(monster => SlayerTask.data.filter(tier => tier.minLevel <= monster.combatLevel && monster.combatLevel < tier.maxLevel)).flat())
+            const coSlayerTaskList = new Set([...coMonsterList].filter(x => x.canSlayer).map(monster => game.combat.slayerTask.categories.filter(tier => tier.minLevel <= monster.combatLevel && monster.combatLevel < tier.maxLevel)).flat())
 
             coAreas.forEach(x => x.isCO = true)
             coMonsterList.forEach(x => x.isCO = true)
@@ -2630,7 +2631,7 @@ export async function setup(ctx) {
                     return 99;
             })
             ctx.patch(SlayerTask, 'getMonsterSelection').replace(function(o, tier) { // This should always be patched, since it's bugged ingame
-                const data = SlayerTask.data[tier];
+                const data = this.game.combat.slayerTask.categories.getObjectByID(tier);
                 if (slayerRerollButtonValue() && rerollEnableButtonValue() && game?.combat?.enemy?.monster?.canSlayer && game?.combat?.enemy?.monster?.combatLevel >= data.minLevel && game?.combat?.enemy?.monster?.combatLevel <= data.maxLevel) { // Check if reroll current task is enabled, check if the monster we are fighting is a slayer monster AND is in the tier of slayer task we are requesting
                     return [game.combat.enemy.monster]
                 }
