@@ -1984,7 +1984,7 @@ export async function setup(ctx) {
             coMonsterList.forEach(x => x.isCO = true)
 
             coSlayerTaskList.forEach(tier => {
-                SlayerTask.data[tier.id].isCO = true
+                tier.isCO = true
             })
         }
 
