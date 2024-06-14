@@ -156,84 +156,16 @@
 					"melvorD:Slayer",
 					"melvorD:Prayer"
 				],
-				"overrideLevelCap": 10,
+				"defaultInitialLevelCap": 10,
+				"defaultInitialAbyssalLevelCap": 10,
+                "levelCapIncreases": [
+                    "melvorAoD:Pre99Dungeons",
+                    "melvorAoD:ImpendingDarknessSet100",
+                ],
+				"allowXPOverLevelCap": false,
 				"disablePreservation": true,
 				"disableItemDoubling": true,
-				"allowDungeonLevelCapIncrease": true,
 				"allowAncientRelicDrops": true,
-				"allowXPOverLevelCap": false,
-				"autoLevelSkillsPre99": [
-					{
-						"skillID": "melvorD:Attack",
-						"value": 5
-					},
-					{
-						"skillID": "melvorD:Strength",
-						"value": 5
-					},
-					{
-						"skillID": "melvorD:Defence",
-						"value": 5
-					},
-					{
-						"skillID": "melvorD:Hitpoints",
-						"value": 5
-					},
-					{
-						"skillID": "melvorD:Ranged",
-						"value": 5
-					},
-					{
-						"skillID": "melvorD:Magic",
-						"value": 5
-					},
-					{
-						"skillID": "melvorD:Slayer",
-						"value": 5
-					},
-					{
-						"skillID": "melvorD:Prayer",
-						"value": 5
-					}
-				],
-				"autoLevelSkillsPost99": [
-					{
-						"skillID": "melvorD:Attack",
-						"value": 3
-					},
-					{
-						"skillID": "melvorD:Strength",
-						"value": 3
-					},
-					{
-						"skillID": "melvorD:Defence",
-						"value": 3
-					},
-					{
-						"skillID": "melvorD:Hitpoints",
-						"value": 3
-					},
-					{
-						"skillID": "melvorD:Ranged",
-						"value": 3
-					},
-					{
-						"skillID": "melvorD:Magic",
-						"value": 3
-					},
-					{
-						"skillID": "melvorD:Slayer",
-						"value": 3
-					},
-					{
-						"skillID": "melvorD:Slayer",
-						"value": 3
-					},
-					{
-						"skillID": "melvorD:Prayer",
-						"value": 3
-					}
-				],
 				"disabledModifiers": [
 					"increasedChanceToDoubleItemsSkill",
 					"increasedChanceToDoubleItemsGlobal",
