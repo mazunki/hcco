@@ -1877,7 +1877,6 @@ export async function setup(ctx) {
                     return game.shop.purchases.filter(x => x.isCO).includes(requirement.purchase)
                 case 'SlayerTask':
                     return game.combat.slayerTask.categories.filter(x => x.isCO).map(x => x.id).includes(requirement.tier) // This is just for stuff like Mythical Slayer Gear
-				*/
                 case 'MonsterKilled':
                     return game.monsters.filter(x => x.isCO).includes(requirement.monster)
                     // CO do not have Township so auto-fail these
