@@ -3017,6 +3017,8 @@ export async function setup(ctx) {
 			`
         }
         createSlayerRadios()
+        coRepeatSlayerTaskButton(rerollEnableButtonValue())
+
         ctx.patch(SlayerTaskMenuElement, "toggleAutoSlayerCheckbox").before((unlocked) => {
             if (unlocked) document.querySelector("#slayerRadioDiv > label:nth-child(2)").classList.remove('d-none')
             else document.querySelector("#slayerRadioDiv > label:nth-child(2)").classList.add('d-none')
