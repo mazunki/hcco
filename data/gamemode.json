@@ -158,10 +158,10 @@
 				],
 				"defaultInitialLevelCap": 10,
 				"defaultInitialAbyssalLevelCap": 10,
-                "levelCapIncreases": [
-                    "melvorAoD:Pre99Dungeons",
-                    "melvorAoD:ImpendingDarknessSet100",
-                ],
+				"levelCapIncreases": [
+					"melvorAoD:Pre99Dungeons",
+					"melvorAoD:ImpendingDarknessSet100",
+				],
 				"allowXPOverLevelCap": false,
 				"disablePreservation": true,
 				"disableItemDoubling": true,
