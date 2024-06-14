@@ -3028,32 +3028,35 @@ export async function setup(ctx) {
         }
 
         const summoningProgressBars = () => {
-            let summoningSkillProgressElement = document.createElement("div");
-            document.querySelector("#combat-skill-progress-menu > table").appendChild(summoningSkillProgressElement)
-            summoningSkillProgressElement.outerHTML = `<tbody id='summoning-row'>
-				<tr>
-				<th class="text-center" scope="row">
-				<img class="skill-icon-xs" src="assets/media/skills/summoning/summoning.svg">
-				</th>
-				<td class="font-w600 font-size-sm">
-	
-				</td>
-				<td class="font-w600 font-size-sm">
-				<small id="skill-progress-percent-melvorD:Summoning">100%</small>
-				</td>
-				<td class="font-w600 font-size-sm d-none d-sm-table-cell">
-	
-				</td>
-				<td>
-				<div class="progress active" style="height: 8px" id="skill-progress-xp-tooltip-melvorD:Summoning">
-	
-				</div>
-				</div>
-				</td>
-				<td class="font-w600 xphc d-none" style="text-align: right;" id="xphc-7-rate"><small>...</small></td><td class="font-w600 xphc xphcl d-none" style="text-align: right;"><span id="xphc-7-lvl">...</span> to <input type="number" id="xphc-7-lvl-in" name="xphc-lvl" min="2" style="width: 60px; margin-left: 0.25em;"></td></tr>
-				</tbody>`
-
-            document.getElementById('summoning-row').classList.add('d-none')
+            const tableElement = document.querySelector("#combat-skill-progress-table > table");
+            if (tableElement) {
+                let summoningSkillProgressElement = document.createElement("div");
+                tableElement.appendChild(summoningSkillProgressElement);
+                summoningSkillProgressElement.outerHTML = `<tbody id='summoning-row'>
+                    <tr>
+                    <th class="text-center" scope="row">
+                    <img class="skill-icon-xs" src="assets/media/skills/summoning/summoning.svg">
+                    </th>
+                    <td class="font-w600 font-size-sm">
+        
+                    </td>
+                    <td class="font-w600 font-size-sm">
+                    <small id="skill-progress-percent-melvorD:Summoning">100%</small>
+                    </td>
+                    <td class="font-w600 font-size-sm d-none d-md-table-cell">
+        
+                    </td>
+                    <td>
+                    <div class="progress active" style="height: 8px" id="skill-progress-xp-tooltip-melvorD:Summoning">
+        
+                    </div>
+                    </div>
+                    </td>
+                    <td class="font-w600 xphc d-none" style="text-align: right;" id="xphc-7-rate"><small>...</small></td><td class="font-w600 xphc xphcl d-none" style="text-align: right;"><span id="xphc-7-lvl">...</span> to <input type="number" id="xphc-7-lvl-in" name="xphc-lvl" min="2" style="width: 60px; margin-left: 0.25em;"></td></tr>
+                    </tbody>`
+        
+                document.getElementById('summoning-row').classList.add('d-none');
+            } 
 
             skillProgressDisplay.elems.get(game.summoning).percent.push(document.querySelector("#skill-progress-percent-melvorD\\:Summoning")) // Add an xp tracker
             const tooltipBar = document.getElementById(`skill-progress-xp-tooltip-melvorD:Summoning`)
