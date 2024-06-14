@@ -35,7 +35,7 @@ export async function setup(ctx) {
     }
 
     // const versionNumber = { major: 2, minor: 36 }
-    let versionNumber = ctx.version.split(".")
+    let versionNumber = ctx.version.split("1.3")
     if (versionNumber === undefined) {
         versionNumber = ["", "", ""]
         console.warn("HCCO version number not set.")
