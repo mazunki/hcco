@@ -1828,11 +1828,11 @@ export async function setup(ctx) {
         hideTownshipElements()
     }
 
-    ctx.patch(Game, "createOfflineModal").after((html) => {
+    ctx.patch(Game, "snapshotOffline").after((snapshot) => {
         if (!(coGamemodeCheck() && townshipButtonValue()))
-            return html
-        html = html.replace("<span class='text-danger'>Township Health: 100%</span>", "").replace("<h5 class='font-w600 mb-1'></h5>", "") // Remove Township health from the UI and do some cleanup on empty HTML if necessary
-        return html
+            return snapshot
+        delete snapshot["township"];
+        return snapshot
     })
 
     const hideTownshipElements = () => {
