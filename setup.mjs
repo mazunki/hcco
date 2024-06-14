@@ -2623,15 +2623,6 @@ export async function setup(ctx) {
                     return [amount * (1 - 0.65), masteryAction]
             })
 
-            ctx.patch(Hitpoints, 'levelCap').get((o) => {
-                if (!rebalanceButtonValue())
-                    return o()
-
-                if (game.stats.monsterKillCount(game.monsters.getObjectByID("melvorF:Umbora")) + game.stats.monsterKillCount(game.monsters.getObjectByID("melvorF:Rokken")) + game.stats.monsterKillCount(game.monsters.getObjectByID("melvorF:Kutul")) >= 10000)
-                    return cloudManager.hasTotHEntitlement ? 120 : 99;
-                else
-                    return 99;
-            })
             ctx.patch(SlayerTask, 'getMonsterSelection').replace(function(o, tier) { // This should always be patched, since it's bugged ingame
                 const data = this.game.combat.slayerTask.categories.getObjectByID(tier);
                 if (slayerRerollButtonValue() && rerollEnableButtonValue() && game?.combat?.enemy?.monster?.canSlayer && game?.combat?.enemy?.monster?.combatLevel >= data.minLevel && game?.combat?.enemy?.monster?.combatLevel <= data.maxLevel) { // Check if reroll current task is enabled, check if the monster we are fighting is a slayer monster AND is in the tier of slayer task we are requesting
