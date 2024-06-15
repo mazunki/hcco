@@ -785,8 +785,8 @@ export async function setup(ctx) {
         }
     }
     const patchLevelCap = () => { // Cap HP to 99 until after 10000 DW kills
-        game.hitpoints._level = Math.min(game.hitpoints.level, game.hitpoints.levelCap)
-        game.combat.player.computeAllStats()
+        game.hitpoints._level = Math.min(game.hitpoints.level, game.hitpoints.LevelCap)
+        game.combat.computeAllStats()
         // game.combat.player.levels.Hitpoints = Math.min(game.hitpoints.level, game.hitpoints.levelCap)
         // game.combat.player.stats.maxHitpoints = Math.min(game.hitpoints.level, game.hitpoints.levelCap) * numberMultiplier
         // game.hitpoints.level = Math.min(game.hitpoints.level, game.hitpoints.levelCap)`
@@ -2837,7 +2837,7 @@ export async function setup(ctx) {
             game.township.casualTasks.currentCasualTasks.forEach(task => {
                 task.rewards.skillXP = []
             }) // Remove casual task xp rewards
-            ctx.patch(TownshipTasks, "claimTaskRewards").before(function(task) {
+            ctx.patch(TownshipTasks, "giveTaskRewards").before(function(task) {
                 if (!coGamemodeCheck())
                     return task
                 if (slayerRerollButtonValue())
@@ -3098,7 +3098,7 @@ export async function setup(ctx) {
             }
             // if (entry[1].allowQuantity)
             // entry[1].qtyElements = getEquipmentQtyElements(entry[0]);
-            ctx.patch(BankSelectedItemMenu, "setItem").before((bankItem, bank) => { // Change bank item to only allow single Mark equip
+            ctx.patch(BankSelectedItemMenuElement, "setItem").before((bankItem, bank) => { // Change bank item to only allow single Mark equip
                 if (!markButtonValue())
                     return
 
@@ -3130,7 +3130,7 @@ export async function setup(ctx) {
         }
 
 
-        ctx.patch(SynergySearchMenu, "updateFilterOptions").replace(function(o) {
+        ctx.patch(SynergySearchMenuElement, "updateFilterOptions").replace(function(o) {
             if (!summoningButtonValue())
                 return o()
 
